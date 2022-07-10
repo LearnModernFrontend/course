@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Todo MVC</h1>
+<form action="" method="get" id="todoForm">
+    <div>
+        <input name="newTodo"/>
+        <button type="submit">新建</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>内容</th>
+                    <th>是否完成</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each todos}}
+                <tr>
+                    <td style="{{$value.completed? 'text-decoration:line-through' : ''}}">{{$value.content}}</td>
+                    <td>
+                        <input type="checkbox" name="complete.{{$index}}" {{$value.completed? 'checked' : ''}}/>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <ul>
+
+        </ul>
+
+    </div>
+</form>
+
+<script>
+  document.body.addEventListener('input', e => {
+    if (e.target.attributes.type?.nodeValue === 'checkbox') {
+      document.getElementById('todoForm').submit()
+    }
+  });
+</script>
+
+</body>
+</html>
